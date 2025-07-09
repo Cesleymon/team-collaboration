@@ -5,20 +5,18 @@ def blackjack():
 def create_deck():
   pass
 
-def deal_card ():
+def deal_card(deck):
   pass
 
-def calculate_score():
+def calculate_score(hand):
   pass
 
-def player_turn():
+def player_turn(deck,player_hand):
   pass
 
-def dealer_turn():
+def dealer_turn(deck,dealer_hand):
   pass
 
-def determine_winner():
+def determine_winner(player_score, dealer_score):
   pass
 
-def shuffle():
-  pass
