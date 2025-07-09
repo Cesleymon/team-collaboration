@@ -102,5 +102,3 @@ def blackjack():
         dealer_turn(deck, dealer_hand)
         result = determine_winner(player_hand, dealer_hand)
         print(result)
-
-
