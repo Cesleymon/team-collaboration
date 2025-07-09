@@ -100,5 +100,4 @@ def blackjack():
         result = determine_winner(player_hand, dealer_hand)
         print(result)
 
-# To play the game, just call:
-# blackjack()
+
