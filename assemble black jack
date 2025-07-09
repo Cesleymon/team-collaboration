@@ -6,4 +6,19 @@ def blackjack():
   deck=[(suit,card) for suit in suits for card in cards]
   random.shuffle(deck)
 
+  def deal_card(deck):
+    dealer_hand=[deck.pop(),deck.pop()] #deals two cards
+    player_hand=[deck.pop(),deck.pop()] #deals two cards
+      if calculate_score(dealer_hand)==21:
+        return 'Black Jack', dealer_hand
+      else:
+        if calculate_score(player_hand)==21:
+          return 'Black Jack', player_hand
+        else:
+          return dealer_hand, player_hand
+
+  def deal_one_card(deck):
+    return deck.pop() #deals one card     
+
+  
   
