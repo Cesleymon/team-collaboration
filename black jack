@@ -1,6 +1,16 @@
 import random 
 def blackjack():
-  pass
+deck = create_deck()
+shuffle_deck(deck)
+player_hand = [deal_card(deck), deal_card(deck)]
+dealer_hand = [deal_card(deck), deal_card(deck)]
+print("Your hand:", player_hand)
+print("Dealer's visible card:", dealer_hand[0])
+result = player_turn(player_hand, deck)
+print(result)
+if result != 'Bust':
+dealer_turn(deck, dealer_hand)
+
 
 def create_deck():
   pass
