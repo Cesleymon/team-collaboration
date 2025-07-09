@@ -7,3 +7,16 @@ def create_deck():
 
 def deal_card ():
   pass
+
+def calculate_score():
+  pass
+
+def player_turn():
+  pass
+
+def dealer_turn():
+  pass
+
+def determine_winner():
+  pass
+
