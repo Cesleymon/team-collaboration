@@ -4,4 +4,6 @@ def blackjack(shuffle):
 
 def create_deck():
   pass
-def
+
+def deal_card ():
+  pass
