@@ -6,7 +6,7 @@ def add_cards(x):
 
 if player_score>21:
   return 'Bust' # if score is over 21 its a bust
-if player_score= 21:
+if player_score==21:
   return 'winner' # is score is 21 they won
 if player_score<21:
   return 'use function add_cards, yes, no' # this will bring them to the function to add card or stop
