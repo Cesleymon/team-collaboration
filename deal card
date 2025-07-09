@@ -1,2 +1,15 @@
 def deal_card(deck):
-  return deck.pop() #deals one card
+  dealer_hand=[deck.pop(),deck.pop] #deals one card
+  player_hand=[deck.pop(),deck.pop] #deals one card
+    if dealer_hand[0]+dealer_hand[1]=21
+      return 'Black Jack'
+    else:
+      return (dealer_hand[0],dealer_hand[1])
+    if player_hand[0]+dealer_hand[1]=21
+      return 'Black Jack'
+    else:
+      return (player_hand[0],player_hand[1])
+def deal_one_card(deck):
+  return deck.pop #deals one card     
+
+  
