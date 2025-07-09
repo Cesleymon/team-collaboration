@@ -1,1 +1,16 @@
-
+def calculate_score(hand):
+values = []
+for card in hand:
+rank = card [1] # The second element would be the values, and the first would be the symbol  
+if rank in ['J','Q','K']:
+values.append(10)
+elif rank == 'A':
+values.append(11)
+else:
+values.append(int(rank))
+score = sum (values)
+while score > 21 and 11 in values : #This while conditional is to determine whether the ace is played as 11 or 1 - depending on the score
+ace_index = values.index(11)
+values[ace_index]=1
+score = sum (values)
+return score 
