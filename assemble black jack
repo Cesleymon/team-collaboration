@@ -54,8 +54,8 @@ def blackjack():
 
             choice = input("Do you want another card? (yes/no): ").lower()
             status, player_hand = add_card(player_hand, deck, choice)
-            if status == 'UH OH, That's a bust':
-                return "UH OH, That's a bust"
+            if status == 'UH OH, That is a bust':
+                return "UH OH, That is a bust"
             elif status == 'stand':
                 return "Final score: " + str(calculate_score(player_hand))
             elif status == 'invalid':
