@@ -1,11 +1,11 @@
 def deal_card(deck):
   dealer_hand=[deck.pop(),deck.pop] #deals one card
   player_hand=[deck.pop(),deck.pop] #deals one card
-    if dealer_hand[0]+dealer_hand[1]=21
+    if dealer_hand[0]+dealer_hand[1]==21
       return 'Black Jack'
     else:
       return (dealer_hand[0],dealer_hand[1])
-    if player_hand[0]+dealer_hand[1]=21
+    if player_hand[0]+dealer_hand[1]==21
       return 'Black Jack'
     else:
       return (player_hand[0],player_hand[1])
