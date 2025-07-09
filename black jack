@@ -6,7 +6,7 @@ def create_deck():
   pass
 
 def deal_card(deck):
-  pass
+  return deck.pop()
 
 def calculate_score(hand):
   pass
