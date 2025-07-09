@@ -14,4 +14,4 @@ return "player wins"
 elif dealer_score > player_score:
 return "dealer wins"
 else:
-"It's a tie."
+return "It's a tie."
