@@ -2,7 +2,7 @@ def add_cards(x):
   if x== yes: #if x is yes, deal one card
     player_hand+=deal_card
       if player_score>21:
-        return bust
+        return 'bust'
       else: 
         return player_turn
   if x==no:
