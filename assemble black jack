@@ -1,92 +1,82 @@
 import random
+
 def blackjack():
-  def create_deck():
-  suits=['Hearts','Diamonds','Clubs','Spades']
-  cards=['1','2','3','4','5','6','7','8','9','10','J','Q','K','A']
-  deck=[(suit,card) for suit in suits for card in cards]
-  random.shuffle(deck)
+    def create_deck():
+        suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+        cards = ['1','2','3','4','5','6','7','8','9','10','J','Q','K','A']
+        deck = [(suit, card) for suit in suits for card in cards]
+        random.shuffle(deck)
+        return deck
 
-  def deal_card(deck):
-    dealer_hand=[deck.pop(),deck.pop()] #deals two cards
-    player_hand=[deck.pop(),deck.pop()] #deals two cards
-      if calculate_score(dealer_hand)==21:
-        return 'Black Jack', dealer_hand
-      else:
-        if calculate_score(player_hand)==21:
-          return 'Black Jack', player_hand
+    def deal_card(deck):
+        dealer_hand = [deck.pop(), deck.pop()]
+        player_hand = [deck.pop(), deck.pop()]
+        if calculate_score(dealer_hand) == 21:
+            return 'Black Jack', dealer_hand
         else:
-          return dealer_hand, player_hand
+            if calculate_score(player_hand) == 21:
+                return 'Black Jack', player_hand
+            else:
+                return dealer_hand, player_hand
 
-  def deal_one_card(deck):
-    return deck.pop() #deals one card
-  
-def showcard():
+    def deal_one_card(deck):
+        return deck.pop()
+
+    def calculate_score(hand):
+        values = []
+        for card in hand:
+            rank = card[1]
+            if rank in ['J','Q','K']:
+                values.append(10)
+            elif rank == 'A':
+                values.append(11)
+            else:
+                values.append(int(rank))
+        score = sum(values)
+        while score > 21 and 11 in values:
+            ace_index = values.index(11)
+            values[ace_index] = 1
+            score = sum(values)
+        return score
+
+    def add_cards(player_hand, deck, x):
+        if x == 'yes':
+            player_hand.append(deal_one_card(deck))
+            player_score = calculate_score(player_hand)
+            if player_score > 21:
+                return 'bust', player_hand
+            else:
+                return 'continue', player_hand
+        elif x == 'no':
+            return 'stand', player_hand
+        else:
+            return 'invalid', player_hand
+
+    def player_turn(player_hand, deck):
+        while True:
+            score = calculate_score(player_hand)
+            if score > 21:
+                return "Bust"
+            if score == 21:
+                return "Winner"
+            return "Final score: " + str(score)
+
+    def dealer_turn(deck, dealer_hand):
+        while True:
+            score = calculate_score(dealer_hand)
+            if score < 17:
+                card = deal_one_card(deck)
+                dealer_hand.append(card)
+                print('Dealer hits and gets', card)
+            else:
+                print('Dealer stands with score', score)
+                break
+
     deck = create_deck()
-    shuffle_deck(deck)
-    player_hand = [deal_card(deck), deal_card(deck)]
-    dealer_hand = [deal_card(deck), deal_card(deck)]
-    print("Your hand:", player_hand)
-    print("Dealer's visible card:", dealer_hand[0])
-    result = player_turn(player_hand, deck)
-    print(result)
-    if result != 'Bust':
-      dealer_turn(deck, dealer_hand)
-  
-  def dealer_turn (deck,dealer_hand):
-    while True:
-      score = calculate_score (dealer_hand)
-    if score < 17:
-      card = deal_card(deck)
-      dealer_hand.append(card)
-      print('Dealer hits and gets',card)
+    deal = deal_card(deck)
+    if isinstance(deal, tuple) and deal[0] == 'Black Jack':
+        print("Blackjack!", deal[1])
     else:
-      print('Dealer stands with score',score)
-    break
-
-  def add_cards(player_hand, deck, x):
-  if x== 'yes': #if x is yes, deal one card
-    player_hand+= [deal_one_card(deck)]
-      if player_score>21:
-        return 'bust', player_hand
-      else: 
-        return 'continue',player_hand
-  elif x=='no':
-    return 'stand',player_hand
-  else:
-    return 'invalid', player_hand
-
-
-  def player_turn(player_hand, deck):
-    while True:
-      score = calculate_score(player_hand)
-    if score > 21:
-      return "Bust"
-    if score == 21:
-      return "Winner"
-    if score < 17:
-      busted = add_cards(player_hand, deck)
-    if busted:
-      return "Bust"
-    else:
-      return "Final score: " + str(score)
-
-  def calculate_score(hand):
-    values = []
-    for card in hand:
-      rank = card [1] # The second element would be the values, and the first would be the symbol  
-    if rank in ['J','Q','K']:
-      values.append(10)
-    elif rank == 'A':
-      values.append(11)
-    else:
-      values.append(int(rank))
-      score = sum (values)
-    while score > 21 and 11 in values : #This while conditional is to determine whether the ace is played as 11 or 1 - depending on the score
-      ace_index = values.index(11)
-      values[ace_index]=1
-      score = sum (values)
-    return score 
-
-
-  
-  
+        dealer_hand, player_hand = deal
+        print("Dealer hand:", dealer_hand)
+        print("Player hand:", player_hand)
