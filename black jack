@@ -1,5 +1,5 @@
 import random 
-def blackjack():
+def showcard():
 deck = create_deck()
 shuffle_deck(deck)
 player_hand = [deal_card(deck), deal_card(deck)]
