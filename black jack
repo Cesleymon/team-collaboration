@@ -1,3 +1,7 @@
 import random 
 def blackjack(shuffle):
   deck=[
+
+def create_deck():
+  pass
+def
