@@ -1,6 +1,6 @@
 import random 
-def blackjack(shuffle):
-  deck=[
+def blackjack():
+  pass
 
 def create_deck():
   pass
@@ -20,3 +20,5 @@ def dealer_turn():
 def determine_winner():
   pass
 
+def shuffle():
+  pass
