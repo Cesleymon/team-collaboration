@@ -1,10 +1,10 @@
 def dealer_turn (deck,dealer_hand):
-while True:
-score = calculate_score (dealer_hand)
-if score < 17:
-card = deal_card(deck)
-dealer_hand.append(card)
-print('Dealer hits and gets',card)
-else:
-print('Dealer stands with score',score)
-break
+  while True:
+    score = calculate_score (dealer_hand)
+  if score < 17:
+    card = deal_card(deck)
+    dealer_hand.append(card)
+    print('Dealer hits and gets',card)
+  else:
+    print('Dealer stands with score',score)
+  break
