@@ -1,4 +1,5 @@
 import random
-def play_black_jack():
+def blackjack():
+
 
   
