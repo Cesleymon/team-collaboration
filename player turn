@@ -1,6 +1,6 @@
 def add_cards(x):
-  if x== yes: #if x is yes, deal one card
-    player_hand+=deal_card
+  if x== 'yes': #if x is yes, deal one card
+    player_hand+=deal_card(deck)
       if player_score>21:
         return 'bust'
       else: 
