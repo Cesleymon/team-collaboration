@@ -1,5 +1,5 @@
 import random 
 suits=['Hearts','Diamonds','Clubs','Spades']
 cards=['1','2','3','4','5','6','7','8','9','10','J','Q','K','A']
-deck=[(suit,car) for suit in suits for card in cards]
+deck=[(suit,card) for suit in suits for card in cards]
 random.shuffle(deck)
