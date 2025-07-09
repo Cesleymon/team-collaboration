@@ -1,2 +1,2 @@
 def deal_card(deck):
-  return deck.pop()
+  return deck.pop() #deals one card
