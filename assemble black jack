@@ -64,13 +64,14 @@ def blackjack():
     def dealer_turn(deck, dealer_hand):
         while True:
             score = calculate_score(dealer_hand)
-            if score < 17:
-                card = deal_one_card(deck)
-                dealer_hand.append(card)
-                print('Dealer hits and gets', card)
-            else:
-                print('Dealer stands with score', score)
-                break
+            while player_score != 21
+                if score < 17:
+                    card = deal_one_card(deck)
+                    dealer_hand.append(card)
+                    print('Dealer hits and gets', card)
+                else:
+                    print('Dealer stands with score', score)
+                    break
 
     def determine_winner(player_hand, dealer_hand):
         player_score = calculate_score(player_hand)
