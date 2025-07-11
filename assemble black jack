@@ -4,44 +4,44 @@ def blackjack():
     def create_deck():
         suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
         cards = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
-        deck = [(suit, card) for suit in suits for card in cards] #This gives cards in the deck both a number and suit 
-        random.shuffle(deck) #This is to ensure all players recieve random cards
+        deck = [(suit, card) for suit in suits for card in cards]
+        random.shuffle(deck)
         return deck
 
     def deal_one_card(deck):
-        return deck.pop() # This deals cards to the player and dealer
+        return deck.pop()
 
     def calculate_score(hand):
         values = []
-        for card in hand: #Goes through each card in the player/dealers hand
-            rank = card[1] 
+        for card in hand:
+            rank = card[1]
             if rank in ['J','Q','K']:
-                values.append(10) # This assigns J,Q, and K values of 10
+                values.append(10)
             elif rank == 'A':
-                values.append(11) #Adds 11 to the total values 
+                values.append(11)
             else:
                 values.append(int(rank))
         score = sum(values)
-        while score > 21 and 11 in values: #This while loop is there to determine whether the ace is played as a 11 or 1
+        while score > 21 and 11 in values:
             ace_index = values.index(11)
             values[ace_index] = 1
-            score = sum(values) #This finishes the steps by tallying up all the card values 
+            score = sum(values)
         return score
 
     def add_card(player_hand, deck, choice):
-        if choice == 'yes': #This is what happens if the players decides to get a hit
+        if choice == 'yes':
             card = deal_one_card(deck)
             player_hand.append(card)
             print('You got:', card)
             player_score = calculate_score(player_hand)
-            print('Your total is now:', player_score)  # Show total after each new card
+            print('Your total is now:', player_score)
             if player_score > 21:
                 return 'bust', player_hand
             else:
                 return 'continue', player_hand
-        elif choice == 'no': #This is what happens if the player decides to stand 
+        elif choice == 'no':
             return 'stand', player_hand
-        else: #The else function is there incase the player inputs something other than yes or no
+        else:
             return 'invalid', player_hand
 
     def player_turn(player_hand, deck):
@@ -51,7 +51,6 @@ def blackjack():
                 return "UH OH, that is a BUST, DEALER WINS!!!"
             if score == 21:
                 return "Winner"
-
             choice = input("Do you want another card? (yes/no): ").lower()
             status, player_hand = add_card(player_hand, deck, choice)
             if status == 'bust':
@@ -64,14 +63,13 @@ def blackjack():
     def dealer_turn(deck, dealer_hand):
         while True:
             score = calculate_score(dealer_hand)
-            while player_score != 21:
-                if score < 17:
-                    card = deal_one_card(deck)
-                    dealer_hand.append(card)
-                    print('Dealer hits and gets', card)
-                else:
-                    print('Dealer stands with score', score)
-                    break
+            if score < 17:
+                card = deal_one_card(deck)
+                dealer_hand.append(card)
+                print('Dealer hits and gets', card)
+            else:
+                print('Dealer stands with score', score)
+                break
 
     def determine_winner(player_hand, dealer_hand):
         player_score = calculate_score(player_hand)
@@ -84,35 +82,38 @@ def blackjack():
         elif player_score > dealer_score:
             return "PLAYER WINS 🎉🎉🎉!!!"
         elif dealer_score > player_score:
-            return "UH OH,DEALER WINS!!!"
+            return "UH OH, DEALER WINS!!!"
         else:
             return "It's a tie!"
 
-    def is_black_jack():
-        if calculate_score(player_hand)==21:
-            return 'black jack, you win'
-        elif calculate_score(dealer_hand)==21:
-            return 'black jack, dealer wins'
-
+    def check_blackjack(player_hand, dealer_hand):
+        if calculate_score(player_hand) == 21:
+            return 'Blackjack! You win 🎉'
+        elif calculate_score(dealer_hand) == 21:
+            return 'Blackjack! Dealer wins 😞'
+        return None
 
     # Game start
     deck = create_deck()
     player_hand = [deal_one_card(deck), deal_one_card(deck)]
     dealer_hand = [deal_one_card(deck), deal_one_card(deck)]
 
-    is_black_jack = is_black_jack()
-
-    if is_black_jack=='black jack, you win' or is_black_jack=='black jack, dealer wins':
-        print(is_black_jack)
-    else: 
+    blackjack_result = check_blackjack(player_hand, dealer_hand)
+    if blackjack_result:
+        print(blackjack_result)
+        return  # Ends game if blackjack
+    else:
         print("YOUR HAND:", player_hand)
-        print("Your total is:", calculate_score(player_hand))  # Show total after initial deal
+        print("Your total is:", calculate_score(player_hand))
         print("DEALER'S VISIBLE CARD:", dealer_hand[0])
 
         player_result = player_turn(player_hand, deck)
         print(player_result)
 
-        if player_result != "UH OH, that is a BUST, DEALER WINS!!!":
+        if "BUST" not in player_result:
             dealer_turn(deck, dealer_hand)
             result = determine_winner(player_hand, dealer_hand)
             print(result)
+
+# To play:
+blackjack()
