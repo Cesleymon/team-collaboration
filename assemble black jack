@@ -7,7 +7,7 @@ def blackjack():
         deck = [(suit, card) for suit in suits for card in cards]
         random.shuffle(deck)
         return deck
-
+#something h=changws 
     def deal_one_card(deck):
         return deck.pop()
 
