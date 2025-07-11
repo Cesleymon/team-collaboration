@@ -93,7 +93,7 @@ def blackjack():
             return 'Blackjack! Dealer wins 😞'
         return None
 
-    # Game start
+   
     deck = create_deck()
     player_hand = [deal_one_card(deck), deal_one_card(deck)]
     dealer_hand = [deal_one_card(deck), deal_one_card(deck)]
