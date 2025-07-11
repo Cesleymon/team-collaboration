@@ -64,7 +64,7 @@ def blackjack():
     def dealer_turn(deck, dealer_hand):
         while True:
             score = calculate_score(dealer_hand)
-            while player_score != 21
+            while player_score != 21:
                 if score < 17:
                     card = deal_one_card(deck)
                     dealer_hand.append(card)
